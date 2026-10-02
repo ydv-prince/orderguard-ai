@@ -16,7 +16,7 @@ OrderGuard AI is a production-oriented, full-stack AI application designed for e
 - [End-to-End Workflow & Architecture](WORKFLOW.md)
 - [API Documentation](docs/api.md)
 - [Machine Learning Pipeline](docs/ml_pipeline.md)
-- [Contributing Guidelines](CONTRIBUTING.md)
+- [Contributing Guidelines](docs/CONTRIBUTING.md)
 
 ## Tech Stack
 - **Frontend:** React, Vite, TypeScript, Tailwind CSS
