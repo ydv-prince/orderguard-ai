@@ -1,8 +1,5 @@
 # OrderGuard AI: End-to-End Workflow
 
-**[README](./README.md) • [Workflow & Architecture](./WORKFLOW.md) • [API Docs](./docs/api.md) • [Contributing](./docs/CONTRIBUTING.md)**
-
-
 This document details the operational workflow, order state machine, and user journey within the OrderGuard AI platform.
 
 ## 1. Merchant Authentication (User Journey)
