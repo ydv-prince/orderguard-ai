@@ -28,6 +28,7 @@ services:
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=orderguard_db
       - POSTGRES_PORT=5432
+      - DATABASE_URL=postgresql://orderguard:password@db:5432/orderguard_db
       - MODEL_PATH=/app/models/best_model_RandomForest.joblib
     ports:
       - "8000:8000"
