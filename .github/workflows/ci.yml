@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test-backend:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+    - name: Install dependencies
+      run: |
+        cd backend
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt || pip install fastapi uvicorn sqlalchemy alembic pydantic[email] pytest httpx passlib[bcrypt] python-multipart python-jose[cryptography] pandas scikit-learn
+    - name: Test with pytest
+      run: |
+        cd backend
+        pytest tests/
+
+  build-frontend:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: "18.x"
+    - name: Install dependencies and build
+      run: |
+        cd frontend
+        npm ci
+        npm run build
