@@ -1,5 +1,8 @@
 # OrderGuard AI
 
+**[README](./README.md) • [Workflow & Architecture](./WORKFLOW.md) • [API Docs](./docs/api.md) • [Contributing](./docs/CONTRIBUTING.md)**
+
+
 OrderGuard AI is a production-oriented, full-stack AI application designed for e-commerce COD (Cash on Delivery) order verification and risk management. It estimates operational risk to prioritize manual verification, helping merchants reduce failed deliveries (RTO - Return to Origin).
 
 > **Disclaimer:** OrderGuard AI predictions do not establish customer intent or guarantee delivery outcomes. The tool is strictly designed to prioritize manual review workflows.
