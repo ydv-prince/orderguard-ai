@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: orderguard
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: orderguard_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U orderguard -d orderguard_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      - USE_SQLITE=False
+      - POSTGRES_SERVER=db
+      - POSTGRES_USER=orderguard
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=orderguard_db
+      - POSTGRES_PORT=5432
+      - MODEL_PATH=/app/models/best_model_RandomForest.joblib
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./data:/app/data
+      - ./ml/models:/app/models
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:
