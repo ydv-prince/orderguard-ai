@@ -12,6 +12,12 @@ OrderGuard AI is a production-oriented, full-stack AI application designed for e
 - **Human-in-the-Loop Workflow:** A React dashboard for reviewing and taking action on risky orders.
 - **Automated CI/CD:** GitHub actions configured for testing and building.
 
+## Documentation
+- [End-to-End Workflow & Architecture](WORKFLOW.md)
+- [API Documentation](docs/api.md)
+- [Machine Learning Pipeline](docs/ml_pipeline.md)
+- [Contributing Guidelines](CONTRIBUTING.md)
+
 ## Tech Stack
 - **Frontend:** React, Vite, TypeScript, Tailwind CSS
 - **Backend:** Python, FastAPI, SQLAlchemy, Alembic, SQLite (local fallback) / Supabase PostgreSQL (cloud)
