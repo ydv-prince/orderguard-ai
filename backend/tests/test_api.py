@@ -34,7 +34,7 @@ def test_health_check():
 
 import uuid
 
-def test_register_and_login():
+def _register_and_login_helper():
     unique_id = uuid.uuid4().hex[:8]
     email = f"test_{unique_id}@merchant.com"
     
@@ -57,8 +57,11 @@ def test_register_and_login():
     
     return res.json()["access_token"]
 
+def test_register_and_login():
+    _register_and_login_helper()
+
 def test_create_order():
-    token = test_register_and_login()
+    token = _register_and_login_helper()
     headers = {"Authorization": f"Bearer {token}"}
     
     order_data = {
@@ -74,7 +77,7 @@ def test_create_order():
     assert res.json()["total_amount"] == 50.0
 
 def test_get_orders():
-    token = test_register_and_login()
+    token = _register_and_login_helper()
     headers = {"Authorization": f"Bearer {token}"}
     
     res = client.get("/api/v1/orders/", headers=headers)
