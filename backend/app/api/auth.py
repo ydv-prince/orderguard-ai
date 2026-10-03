@@ -78,10 +78,9 @@ def google_auth(
             raise ValueError("Invalid token")
             
         token_info = token_info_response.json()
-        # Verify audience matches our Client ID (requires backend access to the client ID)
-        # For full security in production, assert token_info['aud'] == settings.GOOGLE_CLIENT_ID
-        if "aud" not in token_info:
-            raise ValueError("Token missing audience claim")
+        # Verify audience matches our Client ID
+        if token_info.get("aud") != settings.GOOGLE_CLIENT_ID:
+            raise ValueError("Token audience mismatch")
             
         # Fetch user info using the access token
         user_info_response = requests.get(

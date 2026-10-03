@@ -35,7 +35,8 @@ class Settings(BaseSettings):
         return f"postgresql://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@{self.POSTGRES_SERVER}:{self.POSTGRES_PORT}/{self.POSTGRES_DB}"
     
     # Security
-    SECRET_KEY: str = os.getenv("SECRET_KEY", "CHANGE_ME_IN_PRODUCTION_SUPER_SECRET_KEY_123")
+    SECRET_KEY: str
+    GOOGLE_CLIENT_ID: str
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 8  # 8 days
     BACKEND_CORS_ORIGINS: list[str] | str = ["*"]
 
