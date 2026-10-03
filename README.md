@@ -26,7 +26,12 @@ OrderGuard AI is a production-oriented, full-stack AI application designed for e
 
 ## Installation (Production / Docker)
 
-The easiest and recommended way to run the entire stack (PostgreSQL, Backend API, Frontend React App) is using Docker Compose:
+The easiest and recommended way to run the entire stack (PostgreSQL, Backend API, Frontend React App) is using Docker Compose.
+
+**Important Security Requirement:** The application strictly enforces production secrets and will fail to start if they are missing. Before running Docker, you must provide these values (e.g., via a `.env` file at the root or directly in the `docker-compose.yml` environment blocks):
+- `SECRET_KEY` (Backend JWT signing secret)
+- `GOOGLE_CLIENT_ID` (Backend OAuth audience validation)
+- `VITE_GOOGLE_CLIENT_ID` (Frontend Google Login component)
 
 ```bash
 docker-compose up --build -d
@@ -52,7 +57,11 @@ python -m venv venv
 pip install -r requirements.txt
 
 # Environment Setup
-# Edit .env file and configure Supabase Database URL (e.g., using connection pooler)
+# Create a .env file in the backend directory. The application strictly requires:
+# SECRET_KEY="your_secure_random_string"
+# GOOGLE_CLIENT_ID="your_google_client_id"
+# 
+# (Optional) Edit .env file and configure Supabase Database URL to use PostgreSQL:
 # DATABASE_URL=postgresql://postgres:[PASSWORD]@aws-0-[REGION].pooler.supabase.com:6543/postgres
 
 # Run migrations
@@ -63,6 +72,12 @@ uvicorn main:app --reload
 ```
 
 ### 2. Frontend Setup
+
+The frontend strictly requires the Google Client ID to boot successfully. Create a `.env` file in the `frontend` directory:
+```env
+VITE_GOOGLE_CLIENT_ID=your_google_client_id
+```
+
 ```bash
 cd frontend
 npm install
