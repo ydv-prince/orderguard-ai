@@ -12,8 +12,16 @@ function App() {
   };
 
   if (!token) {
+    const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+    if (!clientId) {
+      return (
+        <div className="min-h-screen flex items-center justify-center bg-gray-50">
+          <div className="text-red-600 font-medium p-4 bg-red-50 rounded-lg shadow">Configuration Error: Missing VITE_GOOGLE_CLIENT_ID in production environment.</div>
+        </div>
+      );
+    }
     return (
-      <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID || "YOUR_GOOGLE_CLIENT_ID"}>
+      <GoogleOAuthProvider clientId={clientId}>
         <Login onLogin={(t) => setToken(t)} />
       </GoogleOAuthProvider>
     );
