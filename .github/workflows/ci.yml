@@ -27,6 +27,9 @@ jobs:
         python generate_synthetic_data.py
         python train_models.py
     - name: Test with pytest
+      env:
+        SECRET_KEY: "ci_dummy_secret_key"
+        GOOGLE_CLIENT_ID: "ci_dummy_google_client_id"
       run: |
         cd backend
         pytest tests/
