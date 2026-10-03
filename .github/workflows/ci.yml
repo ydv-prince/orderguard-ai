@@ -19,7 +19,7 @@ jobs:
       run: |
         cd backend
         python -m pip install --upgrade pip
-        pip install -r requirements.txt || pip install fastapi uvicorn sqlalchemy alembic pydantic[email] pytest httpx passlib[bcrypt] python-multipart python-jose[cryptography] pandas scikit-learn
+        pip install -r requirements.txt || pip install fastapi uvicorn sqlalchemy alembic pydantic[email] pytest httpx2 passlib[bcrypt] python-multipart python-jose[cryptography] pandas scikit-learn
     - name: Generate ML Model
       run: |
         cd ml
